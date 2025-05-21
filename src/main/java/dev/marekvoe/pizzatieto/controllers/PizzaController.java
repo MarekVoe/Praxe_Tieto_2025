@@ -1,30 +1,30 @@
 package dev.marekvoe.pizzatieto.controllers;
 
-import dev.marekvoe.pizzatieto.PizzaService;
 import dev.marekvoe.pizzatieto.models.Pizza;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import dev.marekvoe.pizzatieto.services.PizzaService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 public class PizzaController {
 
-    @Autowired
-    private PizzaService pizzaService;
+    private final PizzaService pizzaService;
+
+    public PizzaController(PizzaService pizzaService) {
+        this.pizzaService = pizzaService;
+    }
 
     @GetMapping("/getAllPizzas")
     public List<Pizza> getAllPizzas() {
         return pizzaService.getAllPizzas();
     }
 
-    @DeleteMapping("/deletePizza/{id}")
-    public void deletePizza(@PathVariable int id) {
-        pizzaService.deletePizza(id);
-    }
-
     @PostMapping("/addPizza")
-    public void addPizza(@RequestBody Pizza pizza) {
-        pizzaService.addPizza(pizza);
+    public Pizza addPizza(@RequestBody Pizza pizza) {
+        return pizzaService.addPizza(pizza);
     }
 }
