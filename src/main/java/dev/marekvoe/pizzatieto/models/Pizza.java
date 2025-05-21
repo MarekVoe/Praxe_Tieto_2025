@@ -1,10 +1,13 @@
 package dev.marekvoe.pizzatieto.models;
 
-import jakarta.persistence.Entity;
 
-@Entity
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "pizzas")
 public class Pizza {
 
+    @Id
     private final int id;
     private String name;
 
@@ -23,5 +26,10 @@ public class Pizza {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Pizza: \n ID: " + this.id + "\n Name: " + this.name + "\n";
     }
 }
