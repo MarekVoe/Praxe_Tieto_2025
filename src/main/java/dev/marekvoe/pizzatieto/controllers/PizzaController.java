@@ -2,10 +2,7 @@ package dev.marekvoe.pizzatieto.controllers;
 
 import dev.marekvoe.pizzatieto.models.Pizza;
 import dev.marekvoe.pizzatieto.services.PizzaService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,10 @@ public class PizzaController {
     @PostMapping("/addPizza")
     public Pizza addPizza(@RequestBody Pizza pizza) {
         return pizzaService.addPizza(pizza);
+    }
+
+    @DeleteMapping("/deletePizza/{id}")
+    public void deletePizza(@PathVariable String id) {
+        pizzaService.deletePizza(id);
     }
 }
