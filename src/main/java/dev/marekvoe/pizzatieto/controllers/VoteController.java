@@ -19,7 +19,7 @@ public class VoteController {
         this.tokenService = tokenService;
     }
 
-    @GetMapping
+    @GetMapping("/generateToken")
     public String generateVoteToken() {
         String token = tokenService.generateToken();
         return token;
@@ -29,6 +29,11 @@ public class VoteController {
     public String voteForPizza(@PathVariable int pizzaId, @RequestHeader("Authorization") String token) {
         voteService.voteForPizza(pizzaId, token);
         return "Hlas byl úspěšně zaznamenán!";
+    }
+
+    @GetMapping("/getVotes/{pizzaId}")
+    public int getVotesForPizza(@PathVariable int pizzaId) {
+        return voteService.getVoteResults().get(pizzaId);
     }
 
     @GetMapping("/results")
