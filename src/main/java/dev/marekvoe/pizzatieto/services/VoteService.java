@@ -19,6 +19,7 @@ public class VoteService {
         if (!tokenService.isTokenValid(token)) {
             throw new IllegalArgumentException("Neplatný token. Nebo token byl již použit.");
         }
+        System.out.println("Vote Service Token: " + token);
         votes.put(pizzaId, votes.getOrDefault(pizzaId, 0) + 1);
         tokenService.invalidateToken(token);
     }
