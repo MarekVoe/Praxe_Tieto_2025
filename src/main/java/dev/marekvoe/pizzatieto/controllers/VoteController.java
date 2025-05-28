@@ -37,9 +37,15 @@ public class VoteController {
         return "Hlas byl úspěšně zaznamenán!";
     }
 
+    @PostMapping("/unvote/{pizzaId}")
+    public String unvoteForPizza(@PathVariable int pizzaId, @RequestHeader("Authorization") String token) {
+        voteService.unvoteForPizza(pizzaId, token);
+        return "Hlas byl úspěšně zrušen!";
+    }
+
     @GetMapping("/getVotes/{pizzaId}")
     public int getVotesForPizza(@PathVariable int pizzaId) {
-        return voteService.getVoteResults().get(pizzaId);
+        return voteService.getVoteResults().getOrDefault(pizzaId, 0);
     }
 
     @GetMapping("/results")
