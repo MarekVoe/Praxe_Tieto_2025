@@ -20,6 +20,10 @@ public class Pizza {
         return this.description;
     }
 
+    public void setUpvotes(int upvotes) {
+        this.upvotes = upvotes;
+    }
+
     public int getUpvotes() {
         return this.upvotes;
     }
